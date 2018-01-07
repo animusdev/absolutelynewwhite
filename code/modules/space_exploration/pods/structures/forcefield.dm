@@ -243,7 +243,7 @@
 		OpenMenu(usr)
 		UpdateLinked()
 
-/*	check_access(obj/item/weapon/card/id/I, var/passing = 0)
+	check_access(obj/item/weapon/card/id/I, var/passing = 0)
 		if(istype(I, /obj/item/device/pda))
 			var/obj/item/device/pda/pda = I
 			I = pda.id
@@ -259,7 +259,7 @@
 			if(!(req in I.access)) //doesn't have this access
 				return 0
 		return 1
-*/
+
 	attack_hand(var/mob/living/user)
 		if(..())
 			return 0

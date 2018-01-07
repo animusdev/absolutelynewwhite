@@ -610,7 +610,7 @@ var/list/pod_list = list()
 				RemoveDamageFlag(P_DAMAGE_FIRE)
 				PrintSystemNotice("Fire extinguished.")
 		..()
-/*
+
 	CtrlShiftClick(var/mob/user)
 		if(!check_rights(R_ADMIN))
 			return ..()
@@ -619,7 +619,7 @@ var/list/pod_list = list()
 			user.client.debug_variables(pod_log)
 
 		OpenDebugMenu(user)
-*/
+
 
 	Adjacent(var/atom/neighbor)
 		if(neighbor in bounds(1))

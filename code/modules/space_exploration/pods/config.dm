@@ -1,7 +1,7 @@
 var/datum/space_exploration_config/pod/pod_config
 
 /datum/space_exploration_config/pod
-//	category = "Pod"
+	category = "Pod"
 
 	var/damage_notice_cooldown
 	var/damage_overlay_threshold
