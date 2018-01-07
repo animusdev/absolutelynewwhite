@@ -26,9 +26,8 @@
 		var/datum/gas_mixture/air = new()
 		air.temperature = T20C
 		air.volume = volume
-		air.assert_gases("o2","n2")
-		air.gases["o2"][MOLES] = O2STANDARD*air.volume/(R_IDEAL_GAS_EQUATION*air.temperature)
-		air.gases["n2"][MOLES] = N2STANDARD*air.volume/(R_IDEAL_GAS_EQUATION*air.temperature)
+		air.assert_gases("o2")
+		air.gases["o2"][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
 		return air
 
 	proc/HasTraction()
@@ -37,8 +36,8 @@
 			for(var/atom/A in bounds(1))
 				if(istype(A, path))
 					return 1
-
-		return 0
+				else
+					return 0
 
 	proc/GetCanister()
 		return new /obj/machinery/portable_atmospherics/canister/air(src)

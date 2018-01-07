@@ -28,6 +28,7 @@ var/list/pod_list = list()
 	var/last_fire_tick = 0
 	var/last_notice_tick = 0
 	var/inertial_drift_delay = 0
+	var/movement_cost = 2
 
 	var/list/hardpoints = list()
 	var/list/attachments = list()
@@ -339,19 +340,19 @@ var/list/pod_list = list()
 			PrintSystemAlert("Engine is turned off.")
 			return 0
 
-		if(!HasPower(pod_config.movement_cost))
+		if(!HasPower(movement_cost)) //ето костыль, тут изначально было if(!HasPower(pod_config.movement_cost)), но оно не работало
 			PrintSystemAlert("Insufficient power.")
 			return 0
 
 		if(HasDamageFlag(P_DAMAGE_EMPED))
 			_dir = pick(cardinal)
 
-		var/can_drive_over = 0
+//		var/can_drive_over = 0
 		var/is_dense = 0
 		for(var/turf/T in GetDirectionalTurfs(_dir))
 			if(T.density)
 				is_dense = 1
-			for(var/path in pod_config.drivable)
+/*			for(var/path in pod_config.drivable)
 				if(istext(path))	path = text2path(path)
 				if(istype(T, path) || istype(get_area(T), path) || (T.icon_state == "plating"))
 					can_drive_over = 1
@@ -361,7 +362,7 @@ var/list/pod_list = list()
 						var/turf/simulated/floor/F = T
 						if(F.icon_state == F.icon_plating)
 							can_drive_over = 1
-							break
+							break*/
 
 		// Bump() does not play nice with 64x64, so this will have to do.
 		if(is_dense)
@@ -372,17 +373,17 @@ var/list/pod_list = list()
 			last_move_time = world.time
 			return 0
 
-		if(!can_drive_over)
-			dir = _dir
-			last_move_time = world.time
-			return 0
+//		if(!can_drive_over)
+//			dir = _dir
+//			last_move_time = world.time
+//			return 0 //Разнерф
 
 		if(size[1] > 1)
 			// So for some reason when going north or east, Entered() isn't called on the turfs in a 2x2 pod
 			for(var/turf/space/space in GetTurfsUnderPod())
 				space.Entered(src)
 
-		if(istype(get_turf(src), /turf/space) && !HasTraction())
+		if(user != pilot) /*(istype(get_turf(src), /turf/space) && !HasTraction())*/ //ВОТ ЭТО ВОТ ДЕЛАЕТ СОВСЕМ НАОБОРОТ НЕ ТО ЧТО НАДО
 			if((_dir == turn(inertial_direction, 180)) && (toggles & P_TOGGLE_SOR))
 				inertial_direction = 0
 				return 1
@@ -397,7 +398,7 @@ var/list/pod_list = list()
 				return 0
 			var/turf/movement_turf = GetDirectionalTurf(_dir)
 			Move(movement_turf)
-			UsePower(pod_config.movement_cost)
+			UsePower(movement_cost)
 			turn_direction = _dir
 			inertial_direction = _dir
 

@@ -1,6 +1,3 @@
-turf/simulated/wall/mineral/proc/gets_drilled()
-	return
-
 /obj/item/weapon/pod_attachment/primary/melee
 
 	drill/
@@ -35,7 +32,7 @@ turf/simulated/wall/mineral/proc/gets_drilled()
 						return 0
 					if(!UsePower(power_usage))
 						return 0
-					for(var/turf/simulated/wall/mineral/M in turfs)
+					for(var/turf/simulated/mineral/M in turfs)
 						M.gets_drilled()
 
 			for(var/turf/T in turfs)
