@@ -12,6 +12,7 @@
 
 /obj/machinery/mecha_part_fabricator/pod
 	name = "space pod fabricator"
+	icon = 'icons/obj/podfab.dmi'
 	icon_state = "pod-fab"
 	production_type = PODFAB
 	req_access = list()
