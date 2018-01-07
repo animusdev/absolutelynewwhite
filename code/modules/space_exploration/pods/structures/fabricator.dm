@@ -19,9 +19,9 @@
 /obj/machinery/mecha_part_fabricator/pod
 	name = "space pod fabricator"
 	icon_state = "pod-fab"
-	production_type = PODFAB
+//	production_type = PODFAB
 	req_access = list()
-	board_type = /obj/item/weapon/circuitboard/machine/podfab
+//	board_type = /obj/item/weapon/circuitboard/machine/podfab
 
 	GetPartSets()
 		var/list/categories = list()
@@ -40,3 +40,18 @@
 	name = "Pod Manufacturing R&D Console"
 	id = 3
 	req_access = list()
+
+/obj/machinery/mecha_part_fabricator/proc/GetPartSets()
+	return list(
+								"Cyborg",
+								"Ripley",
+								"Firefighter",
+								"Odysseus",
+								"Gygax",
+								"Durand",
+								"H.O.N.K",
+								"Phazon",
+								"Exosuit Equipment",
+								"Cyborg Upgrade Modules",
+								"Misc"
+								)

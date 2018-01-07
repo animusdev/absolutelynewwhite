@@ -1,3 +1,6 @@
+turf/simulated/wall/mineral/proc/gets_drilled()
+	return
+
 /obj/item/weapon/pod_attachment/primary/melee
 
 	drill/

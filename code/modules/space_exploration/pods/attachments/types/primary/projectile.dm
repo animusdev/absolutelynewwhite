@@ -1,3 +1,13 @@
+/obj/item/projectile/beam/laser/heavylaser
+	name = "heavy laser"
+	icon_state = "laser"
+	damage = 40
+
+/obj/item/projectile/beam/laser/accelerator
+	name = "accelerated laser"
+	icon_state = "laser"
+	damage = 75
+
 /obj/item/weapon/pod_attachment/primary/projectile
 
 	disruptor/

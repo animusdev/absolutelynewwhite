@@ -110,10 +110,10 @@
 					if(check_access(id, 1))
 						return 1
 
-				if(istype(pod.pilot.wear_id/*, /obj/item/device/tablet*/))
-					var/obj/item/device/tablet/tablet = pod.pilot.wear_id
-					if(tablet.id)
-						var/obj/item/weapon/card/id/id = tablet.id
+				if(istype(pod.pilot.wear_id, /obj/item/device/pda))
+					var/obj/item/device/pda/pda = pod.pilot.wear_id
+					if(pda.id)
+						var/obj/item/weapon/card/id/id = pda.id
 						if(check_access(id, 1))
 							return 1
 
@@ -244,8 +244,8 @@
 		UpdateLinked()
 
 /*	check_access(obj/item/weapon/card/id/I, var/passing = 0)
-		if(istype(I, /obj/item/device/tablet))
-			var/obj/item/device/tablet/pda = I
+		if(istype(I, /obj/item/device/pda))
+			var/obj/item/device/pda/pda = I
 			I = pda.id
 		if(!istype(I) || !I.access) //not ID or no access
 			return 0
