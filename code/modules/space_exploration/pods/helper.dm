@@ -36,8 +36,8 @@
 			for(var/atom/A in bounds(1))
 				if(istype(A, path))
 					return 1
-				else
-					return 0
+
+		return 0
 
 	proc/GetCanister()
 		return new /obj/machinery/portable_atmospherics/canister/air(src)

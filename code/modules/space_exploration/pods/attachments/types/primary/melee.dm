@@ -25,7 +25,7 @@
 			var/list/additions[length(turfs)]
 			var/needs_logging = 0
 
-			if(locate(/turf/simulated/wall/mineral) in turfs)
+			if(locate(/turf/simulated/mineral) in turfs)
 				user <<("<span class='info'>You start [predicate]...</span>")
 				if(do_after(user, speed))
 					if(!length((turfs & attached_to.GetDirectionalTurfs(attached_to.dir))))
