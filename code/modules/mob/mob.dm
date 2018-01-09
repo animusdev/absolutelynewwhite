@@ -101,6 +101,10 @@ var/next_mob_id = 0
 						msg = blind_message
 					else
 						continue
+		for(var/obj/machinery/camera/CAM in view(T))
+			for(var/mob/O in mob_list)
+				if (O.client && O.client.eye == CAM)
+					O.show_message(msg, 1, blind_message, 2)
 		M.show_message(msg,1,blind_message,2)
 
 // Show a message to all player mobs who sees this atom

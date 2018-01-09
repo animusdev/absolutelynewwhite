@@ -264,3 +264,43 @@
 		var/area/Z = get_area(A)
 		if(!is_type_in_list(Z, blacklist))
 			L.contents += A
+
+//Fans
+/obj/structure/fans
+	icon = 'icons/fans.dmi'
+	icon_state = "fans"
+	name = "environmental regulation system"
+	desc = "A large machine releasing a constant gust of air."
+	anchored = TRUE
+	density = TRUE
+	var/arbitraryatmosblockingvar = TRUE
+	var/buildstacktype = /obj/item/stack/sheet/metal
+	var/buildstackamount = 5
+
+/obj/structure/fans/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/weapon/wrench))
+		user.visible_message("<span class='warning'>[user] disassembles the fan.</span>", \
+						"<span class='notice'>You start to disassemble the fan...</span>", "You hear clanking and banging noises.")
+		if(do_after(user, 20*W.toolspeed, target = src))
+			anchored = !anchored
+			return ..()
+
+/obj/structure/fans/tiny
+	name = "tiny fan"
+	desc = "A tiny fan, releasing a thin gust of air."
+	layer = TURF_LAYER + 0.8
+	density = FALSE
+	icon_state = "fan_tiny"
+	buildstackamount = 2
+
+/obj/structure/fans/New()
+	. = ..()
+	air_update_turf(1)
+
+/obj/structure/fans/Destroy()
+	var/turf/T = loc
+	. = ..()
+	T.air_update_turf(1)
+
+/obj/structure/fans/CanAtmosPass(turf/T)
+	return FALSE
