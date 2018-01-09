@@ -1,5 +1,5 @@
-/client/proc/checkAccount()
-	set name = "Check multiaccounts"
+/client/verb/checkAccount()
+	set name = "Check Multiaccounts"
 	set category = "Admin"
 
 	var/target = input(usr, "Ќапечатайте ckey, который нужно проверить.", "Ckey") as text|null
@@ -36,8 +36,8 @@
 
 	user << browse(output, "window=accaunts;size=600x400")
 
-/client/proc/checkAllAccounts()
-	set name = "Check multiaccounts(All)"
+/client/verb/checkAllAccounts()
+	set name = "Check Multiaccounts (All)"
 	set category = "Admin"
 
 	var/DBQuery/query
