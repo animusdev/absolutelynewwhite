@@ -83,6 +83,17 @@
 
 		if(!removed)
 			return
+
+		var/filtering = filter_type ? TRUE : FALSE
+
+		if(filtering && !istext(filter_type))
+			WARNING("Wrong gas ID in [src]'s filter_type var. filter_type == [filter_type]")
+			filtering = FALSE
+
+		if(filtering && removed.gases[filter_type])
+			var/datum/gas_mixture/filtered_out = new
+			filtered_out.temperature = removed.temperature
+
 		var/datum/gas_mixture/filtered_out = new
 		filtered_out.temperature = removed.temperature
 
