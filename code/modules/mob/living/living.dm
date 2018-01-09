@@ -352,6 +352,12 @@ Sorry Giacom. Please don't be mad :(
 	set name = "Sleep"
 	set category = "IC"
 
+	if(iscarbon(src))
+		var/mob/living/carbon/O = src
+		for(var/mob/living/parasite/meme/M in O.parasites)
+			src << "<span class='notice'>You feel unable to sleep right now.</span>"
+			return
+
 	if(sleeping)
 		src << "<span class='notice'>You are already sleeping.</span>"
 		return
